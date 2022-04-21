@@ -30,6 +30,7 @@ jobs:
     - name: Get dependencies to Build
       id: Get-dependencies-to-Build
       run: |
+        cd src
         go get -v -t -d ./...
         if [ -f Gopkg.toml ]; then
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
@@ -38,12 +39,12 @@ jobs:
 
     - name: Build
       run: |
-        cd src
+        cd src/
         go build -v .
         
     - name: Unit test
       run: |
-        cd src
+        cd src/
         go test
 
     - name: Build & push Docker image
