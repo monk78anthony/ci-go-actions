@@ -38,12 +38,12 @@ jobs:
 
     - name: Build
       run: |
-        cd src/helloworld
+        cd src
         go build -v .
         
     - name: Unit test
       run: |
-        cd src/helloworld
+        cd src
         go test
 
     - name: Build & push Docker image
