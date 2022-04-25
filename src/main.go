@@ -1,15 +1,20 @@
 package main
-
+ 
 import (
-  "fmt"
+    "fmt"
+    "io"
+    "net/http"
+    "time"
 )
-
-func main() {
-  val := print()
-  fmt.Println(val)
+ 
+func MainHandler(w http.ResponseWriter, r *http.Request) {
+    io.WriteString(w, time.Now().Format("2006-01-02 15:04:05"))
 }
-
-func print() string {
-  str := "Hello World!"
-  return str
+ 
+func main() {
+    http.HandleFunc("/", MainHandler)
+ 
+    fmt.Println("Listening on port 5050...")
+ 
+    http.ListenAndServe(":5050", nil)
 }
